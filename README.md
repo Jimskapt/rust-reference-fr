@@ -1,3 +1,19 @@
+> # 📖 La référence du langage Rust
+>
+> **🌐 This is the french translation of the book "The Rust Language Reference"**
+>
+> [👓 Click here to read this translated book online](https://jimskapt.github.io/rust-reference-fr/)
+>
+> *[🔗 Click here to go to the English Book repository](https://github.com/rust-lang/reference)*
+>
+> Translations are inside [`/FRENCH/`](https://github.com/Jimskapt/rust-reference-fr/tree/french-release/FRENCH)
+> folder. Everything else should be remaining as the English Book *(except some
+> necessary files, like this README.md)*.
+>
+> Want to help to translate ?
+> Please read the file
+> [/FRENCH/CONTRIBUTING.md](https://github.com/Jimskapt/rust-reference-fr/blob/french-release/FRENCH/CONTRIBUTING.md) !
+
 # The Rust Language Reference
 
 This document is the primary reference for the Rust programming language.
