@@ -1,0 +1,541 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction - La référence du langage Rust</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+        <link rel="stylesheet" href="../theme/reference.css">
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html" class="active">Introduction</a></li><li class="chapter-item expanded affix "><a href="translation-terms.html">Traduction des termes</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">La référence du langage Rust</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/Jimskapt/rust-reference-fr/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+# Introduction
+-->
+<h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<!--
+This book is the primary reference for the Rust programming language. It
+provides three kinds of material:
+-->
+<p>Le livre est la référence principale du langage de programmation Rust. Il
+fournit trois types de contenu :</p>
+<!--
+  - Chapters that informally describe each language construct and their use.
+  - Chapters that informally describe the memory model, concurrency model,
+    runtime services, linkage model, and debugging facilities.
+  - Appendix chapters providing rationale and references to languages that
+    influenced the design.
+-->
+<ul>
+<li>Des chapitres qui décrivent formellement chaque concept du langage et son
+utilisation.</li>
+<li>Des chapitres qui décrivent formellement le système de mémoire, le système
+de concurrence, les services à l'exécution, le système de liaison, et les
+outils de débogage.</li>
+<li>Des chapitres en annexes qui fournissent les justifications et les
+références aux langages qui ont influencé la conception de Rust.</li>
+</ul>
+<!--
+<div class="warning">
+
+Warning: This book is incomplete. Documenting everything takes a while. See
+the [GitHub issues] for what is not documented in this book.
+
+</div>
+-->
+<div class="warning">
+<p>Attention : ce livre est incomplet. Cela prend du temps de tout documenter.
+Consultez les <a href="https://github.com/rust-lang/reference/issues">tickets sur GitHub</a> pour voir ce qui n'est pas
+encore documenté dans ce livre.</p>
+</div>
+<!--
+## What *The Reference* is Not
+-->
+<h2><a class="header" href="#ce-que-nest-pas-la-référence" id="ce-que-nest-pas-la-référence">Ce que n'est pas <em>La référence</em></a></h2>
+<!--
+This book does not serve as an introduction to the language. Background
+familiarity with the language is assumed. A separate [book] is available to
+help acquire such background familiarity.
+-->
+<p>Ce livre n'a pas vocation à présenter le langage. Il suppose que vous êtes
+suffisamment familier avec le langage. Un <a href="https://jimskapt.github.io/rust-book-fr/">livre dédié à cette
+familiarisation est disponible séparément</a> (disponible aussi en
+<a href="https://doc.rust-lang.org/book/index.html">version anglaise</a>).</p>
+<!--
+This book also does not serve as a reference to the [standard library]
+included in the language distribution. Those libraries are documented
+separately by extracting documentation attributes from their source code. Many
+of the features that one might expect to be language features are library
+features in Rust, so what you're looking for may be there, not here.
+-->
+<p>Ce livre n'a pas non plus pour vocation de servir de référence à la
+<a href="https://doc.rust-lang.org/std/index.html">bibliothèque standard</a> livrée avec le langage. Cette
+bibliothèque est documentée séparément en extrayant les attributs de la
+documentation de son code source. De nombreuses fonctionnalités dont on
+pourrait s'attendre à ce qu'elles soient fournies par le langage sont en fait
+fournies par des bibliothèques en Rust, donc ce que vous cherchez se trouvera
+peut-être là-bas et non ici.</p>
+<!--
+Similarly, this book does not usually document the specifics of `rustc` as a
+tool or of Cargo. `rustc` has its own [book][rustc book]. Cargo has a
+[book][cargo book] that contains a [reference][cargo reference]. There are a few
+pages such as [linkage] that still describe how `rustc` works.
+-->
+<p>Pour les mêmes raisons, ce livre ne documente pas spécialement les
+particularités liées aux outils <code>rustc</code> ou Cargo. <code>rust</code> a <a href="https://doc.rust-lang.org/rustc/index.html">son propre
+livre</a>. Cargo a aussi <a href="https://doc.rust-lang.org/cargo/index.html">un livre</a> qui embarque aussi <a href="https://doc.rust-lang.org/cargo/reference/index.html">une
+référence</a>. Nous avons cependant certaines pages comme par
+exemple <a href="linkage.html">les liaisons</a> qui décrivent quand même un peu comment <code>rustc</code>
+fonctionne.</p>
+<!--
+This book also only serves as a reference to what is available in stable
+Rust. For unstable features being worked on, see the [Unstable Book].
+-->
+<p>Ce livre sert de référence uniquement à ce qui est disponible en Rust stable.
+Pour en savoir plus sur les fonctionnalités instables qui sont en cours de
+construction, consultez le <a href="https://doc.rust-lang.org/nightly/unstable-book/">Unstable Book</a>.</p>
+<!--
+Finally, this book is not normative. It may include details that are
+specific to `rustc` itself, and should not be taken as a specification for
+the Rust language. We intend to produce such a book someday, and until then,
+the reference is the closest thing we have to one.
+-->
+<p>Enfin, ce livre n'est pas une norme. Il peut expliquer des détails qui sont
+spécifiques à <code>rustc</code>, et ne doivent pas être mélangé avec les spécifications
+du langage Rust. Nous avons l'intention d'écrire un livre dédié à cela un jour,
+mais en attendant, cette présente référence est celle qui s'en approche le
+plus.</p>
+<!--
+## How to Use This Book
+-->
+<h2><a class="header" href="#comment-utiliser-ce-livre" id="comment-utiliser-ce-livre">Comment utiliser ce livre</a></h2>
+<!--
+This book does not assume you are reading this book sequentially. Each
+chapter generally can be read standalone, but will cross-link to other chapters
+for facets of the language they refer to, but do not discuss.
+-->
+<p>Ce livre ne nécessite pas que vous le lisiez dans l'ordre. En général, chaque
+chapitre peut être lu de manière indépendante, mais peut s'entrecroiser avec
+d'autres chapitres à propos d'autres aspects du langage, mais qu'il ne traitera
+pas.</p>
+<!--
+There are two main ways to read this document.
+-->
+<p>Il y a deux manières de lire ce document.</p>
+<!--
+The first is to answer a specific question. If you know which chapter answers
+that question, you can jump to that chapter in the table of contents. Otherwise,
+you can press `s` or the click the magnifying glass on the top bar to search for
+keywords related to your question. For example, say you wanted to know when a
+temporary value created in a let statement is dropped. If you didn't already
+know that the [lifetime of temporaries] is defined in the [expressions chapter],
+you could search "temporary let" and the first search result will take you to
+that section.
+-->
+<p>La première est pour répondre à une question précise. Si vous savez quel
+chapitre répond à votre question, vous pouvez vous rendre à ce chapitre avec la
+table des matières. Sinon, vous pouvez appuyer sur <code>s</code> ou cliquer sur la loupe
+dans la barre du haut pour rechercher des mots-clés en lien avec votre
+question. Par exemple, imaginons que vous souhaitiez savoir quand une valeur
+temporaire créée dans une instruction <code>let</code> est libérée. Si vous ne savez
+connaissez pas le chapitre <a href="expressions.html">durée de vie des éléments
+temporaires</a> qui est défini dans le chapitre <a href="expressions.html">des
+expressions</a>, vous pouvez alors chercher <code>let temporaire</code>
+et le premier résultat devrait vous amener à cette section.</p>
+<!--
+The second is to generally improve your knowledge of a facet of the language.
+In that case, just browse the table of contents until you see something you
+want to know more about, and just start reading. If a link looks interesting,
+click it, and read about that section.
+-->
+<p>La seconde manière améliore votre connaissance générale sur des parties
+précises du langage. Dans ce cas, il vous suffit de parcourir la table des
+matières jusqu'à ce que vous voyez quelque chose d'intéressant, puis cliquez
+dessus pour commencer à lire. Et si vous découvrez des liens intéressants
+pendant votre lecture, n'hésitez pas à l'ouvrir.</p>
+<!--
+That said, there is no wrong way to read this book. Read it however you feel
+helps you best.
+-->
+<p>Ceci étant dit, il n'y a pas de mauvaise manière de parcourir ce livre. Donc,
+lisez-le comme bon vous semble !</p>
+<!--
+### Conventions
+-->
+<h3><a class="header" href="#les-règles" id="les-règles">Les règles</a></h3>
+<!--
+Like all technical books, this book has certain conventions in how it displays
+information. These conventions are documented here.
+-->
+<p>Comme tout livre technique, ce livre suit certaines règles qui définissent
+comment présenter les informations. Cette partie décrit donc ici ces règles.</p>
+<!--
+* Statements that define a term contain that term in *italics*. Whenever that
+  term is used outside of that chapter, it is usually a link to the section that
+  has this definition.
+
+  An *example term* is an example of a term being defined.
+-->
+<ul>
+<li>
+<p>Les parties qui définissent un terme contiennent ce terme sont en
+<em>italique</em>. A chaque fois que ce terme est utilisé en dehors de la section
+qui la définit, il y aura généralement un lien vers cette définition.</p>
+<p>Un <em>exemple de terme</em> est un exemple d'un terme qui est en train d'être
+défini.</p>
+</li>
+</ul>
+<!--
+* Differences in the language by which edition the crate is compiled under are
+  in a blockquote that start with the words "Edition Differences:" in **bold**.
+
+  > **Edition Differences**: In the 2015 edition, this syntax is valid that is
+  > disallowed as of the 2018 edition.
+-->
+<ul>
+<li>
+<p>Les différences entre les éditions du langage dans lesquelles la crate est
+compilée sont signalées dans des blocs de citation qui commencent par les
+mots &quot;Différences entre les éditions :&quot; <strong>en gras</strong>.</p>
+<blockquote>
+<p><strong>Différences entre les éditions :</strong> dans l'édition 2015, cette syntaxe est
+valide, alors qu'elle est interdite dans l'édition 2018.</p>
+</blockquote>
+</li>
+</ul>
+<!--
+* Notes that contain useful information about the state of the book or point out
+  useful, but mostly out of scope, information are in blockquotes that start
+  with the word "Note:" in **bold**.
+
+  > **Note**: This is an example note.
+-->
+<ul>
+<li>
+<p>Les remarques qui contiennent des informations importantes sur le statut de
+ce livre ou qui signalent des informations utiles mais souvent hors de la
+portée du livre sont placées dans des blocs de citation qui commencent par
+le mot &quot;Remarque :&quot; <strong>en gras</strong>.</p>
+<blockquote>
+<p><strong>Remarque :</strong> ceci est un exemple de remarque.</p>
+</blockquote>
+</li>
+</ul>
+<!--
+* Warnings that show unsound behavior in the language or possibly confusing
+  interactions of language features are in a special warning box.
+
+  <div class="warning">
+
+  Warning: This is an example warning.
+
+  </div>
+-->
+<ul>
+<li>
+<p>Les avertissements qui mettent en évidence un comportement dangereux ou
+ambigü du langage sont insérés dans des boites d'avertissement spéciales.</p>
+<div class="warning">
+<p>Avertissement : ceci est un exemple d'avertissement.</p>
+</div>
+</li>
+</ul>
+<!--
+* Code snippets inline in the text are inside `<code>` tags.
+
+  Longer code examples are in a syntax highlighted box that has controls for
+  copying, executing, and showing hidden lines in the top right corner.
+
+  ```rust
+  # // This is a hidden line.
+  fn main() {
+      println!("This is a code example");
+  }
+  ```
+-->
+<ul>
+<li>
+<p>Les extraits de code insérés directement dans le texte sont placés dans des
+balises <code>&lt;code&gt;</code>.</p>
+<p>Les exemples de code plus conséquents sont placés dans des boites de code à
+coloration syntaxique afin de plus facilement copier, exécuter, et afficher
+les lignes via les contrôles dans le coin en haut à droite.</p>
+</li>
+</ul>
+<!--
+* The grammar and lexical structure is in blockquotes with either "Lexer" or
+  "Syntax" in <sup>**bold superscript**</sup> as the first line.
+
+  > **<sup>Syntax</sup>**\
+  > _ExampleGrammar_:\
+  > &nbsp;&nbsp; &nbsp;&nbsp; `~` [_Expression_]\
+  > &nbsp;&nbsp; | `box` [_Expression_]
+
+  See [Notation] for more detail.
+-->
+<ul>
+<li>
+<p>La grammaire et structure lexicale sont placés dans des blocs de citation
+avec en première ligne &quot;Lexer&quot; ou &quot;Syntaxe&quot; en <sup><strong>exposant gras</strong></sup>.</p>
+<blockquote>
+<p><strong><sup>Syntaxe</sup></strong><br />
+<em>ExempleDeGrammaire</em>:<br />
+      <code>~</code> <a href="expressions.html"><em>Expression</em></a><br />
+   | <code>box</code> <a href="expressions.html"><em>Expression</em></a></p>
+</blockquote>
+<p>Consultez la page <a href="notation.html">Annotation</a> pour en savoir plus.</p>
+</li>
+</ul>
+<!--
+## Contributing
+-->
+<h2><a class="header" href="#contribuer" id="contribuer">Contribuer</a></h2>
+<!--
+We welcome contributions of all kinds.
+-->
+<p>Nous sommes ouverts aux contributions de n'importe quel type.</p>
+<!--
+You can contribute to this book by opening an issue or sending a pull
+request to [the Rust Reference repository]. If this book does not answer
+your question, and you think its answer is in scope of it, please do not
+hesitate to file an issue or ask about it in the `#docs` channels on
+[Discord]. Knowing what people use this book for the most helps direct our
+attention to making those sections the best that they can be.
+-->
+<p>Vous pouvez contribuer à ce livre en ouvrant un ticket ou envoyer une Pull
+Request dans <a href="https://github.com/rust-lang/reference/">le dépôt de la référence Rust</a>. Si
+ce livre ne répond pas à votre question, que vous jugez que la réponse rentre
+dans le cadre du livre, n'hésitez pas à ouvrir un ticket ou parlez-en dans les
+canaux <code>#docs</code> du <a href="https://discord.gg/rust-lang">Discord</a>. Cela nous permet d'en savoir plus sur la manière
+dont les gens utilisent ce livre pour prioriser l'optimisation de ces sections.</p>
+<p>Si vous souhaitez contribuer à la traduction de ce livre en français, vous
+pouvez faire de même dans le dépôt GitHub <a href="https://github.com/Jimskapt/rust-reference-fr">rust-reference-fr</a>.</p>
+<!--
+[book]: ../book/index.html
+[github issues]: https://github.com/rust-lang/reference/issues
+[standard library]: ../std/index.html
+[the Rust Reference repository]: https://github.com/rust-lang/reference/
+[Unstable Book]: https://doc.rust-lang.org/nightly/unstable-book/
+[_Expression_]: expressions.md
+[cargo book]: ../cargo/index.html
+[cargo reference]: ../cargo/reference/index.html
+[expressions chapter]: expressions.html
+[lifetime of temporaries]: expressions.html#temporaries
+[linkage]: linkage.html
+[rustc book]: ../rustc/index.html
+[Notation]: notation.md
+[Discord]: https://discord.gg/rust-lang
+-->
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+                            <a rel="next" href="translation-terms.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+                    <a rel="next" href="translation-terms.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
